@@ -3,8 +3,6 @@ ENV LANG en_US.UTF-8
 ENV TZ US/Pacific
 ARG DEBIAN_FRONTEND=noninteractive
 
-USER 10001
-
 RUN mkdir /projects
 WORKDIR /projects
 RUN sed -i -e 's/\/root/\/projects/g' /etc/passwd
@@ -32,8 +30,8 @@ RUN mkdir /maap-py \
 
 RUN conda list
 
-#ARG IMAGE_REF
-#ENV DOCKERIMAGE_PATH=${IMAGE_REF}
+ARG IMAGE_REF
+ENV DOCKERIMAGE_PATH=${IMAGE_REF}
 
 
 
