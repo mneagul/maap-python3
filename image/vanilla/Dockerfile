@@ -1,4 +1,4 @@
-FROM quay.io/devfile/base-developer-image:ubi8-latest
+FROM quay.io/devfile/universal-developer-image:ubi8-latest
 ENV LANG en_US.UTF-8
 ENV TZ US/Pacific
 ARG DEBIAN_FRONTEND=noninteractive
@@ -40,6 +40,15 @@ RUN conda list
 
 ARG IMAGE_REF
 ENV DOCKERIMAGE_PATH=${IMAGE_REF}
+
+
+# Set permissions on /etc/passwd, /etc/group, /etc/pki and /home to allow arbitrary users to write
+RUN chgrp -R 0 /home && chmod -R g=u /etc/passwd /etc/group /home
+
+
+COPY --chown=0:0 entrypoint.sh /
+
+ENV HOME=/home/user
 
 
 
