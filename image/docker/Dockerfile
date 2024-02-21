@@ -25,9 +25,12 @@ RUN mkdir /maap-py \
 
 RUN conda list
 
-ARG IMAGE_REF
-ENV DOCKERIMAGE_PATH=${IMAGE_REF}
+#ARG IMAGE_REF
+#ENV DOCKERIMAGE_PATH=${IMAGE_REF}
 
+# Set permissions on /etc/passwd, /etc/group, /etc/pki and /home to allow arbitrary users to write
+RUN chgrp -R 0 /home && chmod -R g=u /etc/passwd /etc/group /home /etc/pki
+USER 10001
 COPY --chown=0:0 entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
