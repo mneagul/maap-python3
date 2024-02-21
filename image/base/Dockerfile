@@ -8,9 +8,6 @@ ENV WORKSPACE_TYPE=vanilla
 
 SHELL ["conda", "run", "-n", "vanilla", "/bin/bash", "-c"]
 
-
-ADD . /
-
 RUN mkdir -p /projects
 WORKDIR /projects
 RUN sed -i -e 's/\/root/\/projects/g' /etc/passwd
