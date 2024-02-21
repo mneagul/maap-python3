@@ -16,8 +16,21 @@ Delete the configmap
 ```angular2html
 kubectl delete configmap getting-started-samples -n eclipse-che
 ```
+
+# Build and run the container
+```bash
+docker build -t maap-starter .
+```
+
+```bash
+docker run -it --rm maap-starter bash
+```
 # ToDo
 - [ ] Add more system information
 - [ ] Modify Redhat universal base image [DUI](https://github.com/devfile/developer-images)
   - https://github.com/devfile/developer-images
 - [ ] Jupyter notebook sample
+
+# Images
+
+Reference image: quay.io/devfile/universal-developer-image:ubi8-latest

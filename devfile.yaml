@@ -4,7 +4,7 @@ metadata:
 components:
   - name: tools
     container:
-      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      image: mas.dit.maap-project.org/root/maap-workspaces/jupyterlab3/vanilla:develop
       volumeMounts:
         - name: venv
           path: /home/user/.venv
@@ -21,6 +21,6 @@ commands:
       label: "Run application"
       component: tools
       workingDir: ${PROJECT_SOURCE}
-      commandLine: "python3 python-maap.py"
+      commandLine: "python python-maap.py"
       group:
         kind: run
