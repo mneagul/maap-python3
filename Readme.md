@@ -19,11 +19,11 @@ kubectl delete configmap getting-started-samples -n eclipse-che
 
 # Build and run the container
 ```bash
-docker build -t maap-starter .
+vanilla build -t maap-starter .
 ```
 
 ```bash
-docker run -it --rm maap-starter bash
+vanilla run -it --rm maap-starter bash
 ```
 # ToDo
 - [ ] Add more system information

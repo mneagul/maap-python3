@@ -14,12 +14,3 @@ components:
   - name: venv
     volume:
       size: 1G
-commands:
-  - id: run-application
-    exec:
-      label: "Run application"
-      component: tools
-      workingDir: ${PROJECT_SOURCE}
-      commandLine: "python python-maap.py"
-      group:
-        kind: run
