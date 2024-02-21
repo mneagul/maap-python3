@@ -1,7 +1,14 @@
-FROM continuumio/miniconda3:23.10.0-1
+FROM quay.io/devfile/base-developer-image:ubi8-latest
 ENV LANG en_US.UTF-8
 ENV TZ US/Pacific
 ARG DEBIAN_FRONTEND=noninteractive
+
+#Install miniconda
+ENV CONDA_DIR /opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh &&  \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda
+# Put conda in path so we can use conda activate
+ENV PATH=$CONDA_DIR/bin:$PATH
 
 RUN mkdir /projects
 WORKDIR /projects
