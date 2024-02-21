@@ -7,7 +7,7 @@ components:
       image: quay.io/igabriel185/maap-default:latest
       volumeMounts:
         - name: venv
-          path: /home/user
+          path: /projects
       memoryLimit: 512Mi
       mountSources: true
 
