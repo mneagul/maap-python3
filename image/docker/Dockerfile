@@ -28,11 +28,10 @@ RUN conda list
 #ARG IMAGE_REF
 #ENV DOCKERIMAGE_PATH=${IMAGE_REF}
 
-USER 10001
+
 COPY --chown=0:0 entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
 ENV HOME=/home/user
 WORKDIR /projects
 ENTRYPOINT [ "/entrypoint.sh" ]
-CMD ["tail", "-f", "/dev/null"]
