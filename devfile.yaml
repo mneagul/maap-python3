@@ -4,7 +4,7 @@ metadata:
 components:
   - name: tools
     container:
-      image: quay.io/igabriel185/maap-default:latest
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
       volumeMounts:
         - name: venv
           path: /projects

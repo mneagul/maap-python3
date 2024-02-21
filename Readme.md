@@ -34,3 +34,4 @@ docker run -it --rm maap-starter bash
 # Images
 
 Reference image: quay.io/devfile/universal-developer-image:ubi8-latest
+#quay.io/igabriel185/maap-default:latest
