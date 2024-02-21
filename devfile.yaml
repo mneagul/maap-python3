@@ -4,7 +4,7 @@ metadata:
 components:
   - name: tools
     container:
-      image: mas.dit.maap-project.org/root/maap-workspaces/jupyterlab3/vanilla:develop
+      image: quay.io/igabriel185/maap-default
       volumeMounts:
         - name: venv
           path: /home/user/.venv
