@@ -15,10 +15,6 @@ RUN mkdir -p /projects
 WORKDIR /projects
 RUN sed -i -e 's/\/root/\/projects/g' /etc/passwd
 
-#COPY --chown=0:0 entrypoint.sh /
-#RUN chmod +x /entrypoint.sh
-#ENV HOME=/home/user
-#ENTRYPOINT [ "/entrypoint.sh" ]
 
 COPY environment.yml /tmp
 RUN conda env create -y -f "/tmp/environment.yml" \
@@ -41,13 +37,10 @@ RUN conda list
 ARG IMAGE_REF
 ENV DOCKERIMAGE_PATH=${IMAGE_REF}
 
-
-# Set permissions on /etc/passwd, /etc/group, /etc/pki and /home to allow arbitrary users to write
-RUN chgrp -R 0 /home && chmod -R g=u /etc/passwd /etc/group /home
-
-
 COPY --chown=0:0 entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 
+ENTRYPOINT [ "/entrypoint.sh" ]
 ENV HOME=/home/user
 
 
