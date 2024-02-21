@@ -1,27 +1,13 @@
-ARG BASE_IMAGE
-ARG BASE_IMAGE_TYPE
+FROM continuumio/miniconda3:23.10.0-1
+ENV LANG en_US.UTF-8
+ENV TZ US/Pacific
+ARG DEBIAN_FRONTEND=noninteractive
 
-FROM ${BASE_IMAGE} as jupyterlab_base
-ARG BASE_IMAGE_TYPE
-# Set WORKSPACE_TYPE, used by entrypoint.sh
-ENV WORKSPACE_TYPE=${BASE_IMAGE_TYPE}
+ENV BASE_IMAGE_TYPE=vanilla
+ENV WORKSPACE_TYPE=vanilla
 
-# Create base images for each workspace needed for build stage later
-FROM jupyterlab_base as workspace_base_pangeo
-SHELL ["conda", "run", "-n", "pangeo", "/bin/bash", "-c"]
-
-FROM jupyterlab_base as workspace_base_vanilla
 SHELL ["conda", "run", "-n", "vanilla", "/bin/bash", "-c"]
 
-FROM jupyterlab_base as workspace_base_r
-SHELL ["conda", "run", "-n", "r", "/bin/bash", "-c"]
-
-FROM jupyterlab_base as workspace_base_isce3
-SHELL ["conda", "run", "-n", "isce3", "/bin/bash", "-c"]
-
-FROM workspace_base_${BASE_IMAGE_TYPE} AS workspace_base
-
-FROM workspace_base as workspace_build_stage
 
 ADD . /
 
@@ -42,16 +28,9 @@ RUN apt-get clean && apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Install workspace specific packages for conda environment
-RUN echo "Checking if environment.yml exists for ${WORKSPACE_TYPE}" \
-    ; if [ -f "/${WORKSPACE_TYPE}/environment.yml" ]; then \
-        echo "Installing packages from '/${WORKSPACE_TYPE}/environment.yml'" \
-        ; conda env update --file "/${WORKSPACE_TYPE}/environment.yml" \
-    ; else \
-        sed -i "s/WORKSPACE_ENVIRONMENT_NAME/${WORKSPACE_TYPE}/g" /shared/environment.yml \
-        ; echo "Installing packages from '/shared/environment.yml'" \
-        ; conda env update --file "/shared/environment.yml" \
-    ; fi
+COPY environment.yml /tmp
+
+RUN conda env update --file "/tmp/environment.yml"
 
 RUN npm install typescript -g
 
@@ -98,6 +77,11 @@ RUN find /opt/conda/ -follow -type f -name '*.a' -delete && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete && \
     /opt/conda/bin/conda clean -afy && \
     npm cache clean --force
+
+# Install maap-py library
+RUN mkdir /maap-py \
+    && git clone --single-branch --branch v3.1.4 https://github.com/MAAP-Project/maap-py.git /maap-py/ \
+    && pip install -e /maap-py/
 
 COPY ./entrypoint.sh /entrypoint.sh
 COPY ./jupyter_patch /opt/jupyter_patch

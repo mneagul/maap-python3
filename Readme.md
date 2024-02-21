@@ -35,3 +35,9 @@ vanilla run -it --rm maap-starter bash
 
 Reference image: quay.io/devfile/universal-developer-image:ubi8-latest
 #quay.io/igabriel185/maap-default:latest
+
+- for base docker environmental variable needs to be set:
+```bash
+export WORKSPACE_TYPE=vanilla
+
+```
