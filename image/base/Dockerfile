@@ -99,4 +99,4 @@ RUN conda list
 # Reset Shell
 SHELL ["/bin/sh", "-c"]
 
-ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+#ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
