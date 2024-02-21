@@ -3,9 +3,16 @@ ENV LANG en_US.UTF-8
 ENV TZ US/Pacific
 ARG DEBIAN_FRONTEND=noninteractive
 
+USER 10001
+
 RUN mkdir /projects
 WORKDIR /projects
 RUN sed -i -e 's/\/root/\/projects/g' /etc/passwd
+
+COPY --chown=0:0 entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+ENV HOME=/home/user
+ENTRYPOINT [ "/entrypoint.sh" ]
 
 COPY environment.yml /tmp
 RUN conda env create -y -f "/tmp/environment.yml" \
@@ -29,9 +36,5 @@ RUN conda list
 #ENV DOCKERIMAGE_PATH=${IMAGE_REF}
 
 
-COPY --chown=0:0 entrypoint.sh /
-RUN chmod +x /entrypoint.sh
 
-ENV HOME=/home/user
-WORKDIR /projects
-ENTRYPOINT [ "/entrypoint.sh" ]
+
