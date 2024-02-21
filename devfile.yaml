@@ -4,10 +4,10 @@ metadata:
 components:
   - name: tools
     container:
-      image: quay.io/igabriel185/maap-default
+      image: quay.io/igabriel185/maap-default:latest
       volumeMounts:
         - name: venv
-          path: /home/user/.venv
+          path: /home/user
       memoryLimit: 512Mi
       mountSources: true
 
