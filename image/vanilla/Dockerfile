@@ -15,10 +15,10 @@ RUN mkdir -p /projects
 WORKDIR /projects
 RUN sed -i -e 's/\/root/\/projects/g' /etc/passwd
 
-COPY --chown=0:0 entrypoint.sh /
-RUN chmod +x /entrypoint.sh
-ENV HOME=/home/user
-ENTRYPOINT [ "/entrypoint.sh" ]
+#COPY --chown=0:0 entrypoint.sh /
+#RUN chmod +x /entrypoint.sh
+#ENV HOME=/home/user
+#ENTRYPOINT [ "/entrypoint.sh" ]
 
 COPY environment.yml /tmp
 RUN conda env create -y -f "/tmp/environment.yml" \
