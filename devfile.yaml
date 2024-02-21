@@ -4,7 +4,7 @@ metadata:
 components:
   - name: tools
     container:
-      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      image: quay.io/igabriel185/maap-default:latest
       volumeMounts:
         - name: venv
           path: /home/user/.venv
@@ -14,13 +14,3 @@ components:
   - name: venv
     volume:
       size: 1G
-
-commands:
-  - id: run-application
-    exec:
-      label: "Run application"
-      component: tools
-      workingDir: ${PROJECT_SOURCE}
-      commandLine: "python python-maap.py"
-      group:
-        kind: run
