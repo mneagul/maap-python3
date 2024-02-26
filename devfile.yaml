@@ -4,11 +4,11 @@ metadata:
 components:
   - name: tools
     container:
-      image: quay.io/igabriel185/maap-default:latest
+      image: quay.io/igabriel185/maap-jupyterlabv2:latest
       volumeMounts:
         - name: venv
           path: /home/user/.venv
-      memoryLimit: 512Mi
+      memoryLimit: 5120Mi
       mountSources: true
 
   - name: venv
