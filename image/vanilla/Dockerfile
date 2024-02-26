@@ -464,7 +464,7 @@ RUN chgrp -R 0 /home && chmod -R g=u /etc/passwd /etc/group /home /etc/pki
 RUN dnf -y clean all --enablerepo='*'
 
 COPY --chown=0:0 entrypoint.sh /
-
+RUN chmod +x /entrypoint.sh
 USER 10001
 
 ENV HOME=/home/user
