@@ -105,19 +105,19 @@ ENV PATH="/home/tooling/.local/bin:$PATH"
 RUN dnf install -y libXext libXrender libXtst libXi
 
 # Lombok
-ENV LOMBOK_VERSION=1.18.18
-RUN wget -O /usr/local/lib/lombok.jar https://projectlombok.org/downloads/lombok-${LOMBOK_VERSION}.jar
+#ENV LOMBOK_VERSION=1.18.18
+#RUN wget -O /usr/local/lib/lombok.jar https://projectlombok.org/downloads/lombok-${LOMBOK_VERSION}.jar
 
 # Scala
-RUN curl -fLo cs https://git.io/coursier-cli && \
-    chmod +x cs && \
-    mv cs /usr/local/bin/
-RUN curl -fLo sbt https://raw.githubusercontent.com/dwijnand/sbt-extras/master/sbt && \
-    chmod +x sbt && \
-    mv sbt /usr/local/bin/
-RUN curl -fLo mill https://raw.githubusercontent.com/lefou/millw/main/millw && \
-    chmod +x mill && \
-    mv mill /usr/local/bin/
+#RUN curl -fLo cs https://git.io/coursier-cli && \
+#    chmod +x cs && \
+#    mv cs /usr/local/bin/
+#RUN curl -fLo sbt https://raw.githubusercontent.com/dwijnand/sbt-extras/master/sbt && \
+#    chmod +x sbt && \
+#    mv sbt /usr/local/bin/
+#RUN curl -fLo mill https://raw.githubusercontent.com/lefou/millw/main/millw && \
+#    chmod +x mill && \
+#    mv mill /usr/local/bin/
 
 # C/CPP
 RUN dnf -y install llvm-toolset gcc gcc-c++ clang clang-libs clang-tools-extra gdb
@@ -142,26 +142,26 @@ RUN cd /usr/bin \
 RUN pip install pylint yq
 
 # PHP
-ENV PHP_VERSION=7.4
-RUN dnf -y module enable php:$PHP_VERSION && \
-    dnf install -y --setopt=tsflags=nodocs php php-mysqlnd php-pgsql php-bcmath \
-                php-gd php-intl php-json php-ldap php-mbstring php-pdo \
-                php-pear php-zlib php-mysqli php-curl php-xml php-devel\
-                php-process php-soap php-opcache php-fpm ca-certificates \
-                php-gmp php-pecl-xdebug php-pecl-zip mod_ssl hostname && \
-    wget https://getcomposer.org/installer -O /tmp/composer-installer.php && \
-    php /tmp/composer-installer.php --filename=composer --install-dir=/usr/local/bin
-
-ENV PHP_DEFAULT_INCLUDE_PATH=/usr/share/pear \
-    PHP_SYSCONF_PATH=/etc \
-    PHP_HTTPD_CONF_FILE=php.conf \
-    HTTPD_MAIN_CONF_PATH=/etc/httpd/conf \
-    HTTPD_MAIN_CONF_D_PATH=/etc/httpd/conf.d \
-    HTTPD_MODULES_CONF_D_PATH=/etc/httpd/conf.modules.d \
-    HTTPD_VAR_RUN=/var/run/httpd \
-    HTTPD_DATA_PATH=/var/www \
-    HTTPD_DATA_ORIG_PATH=/var/www \
-    HTTPD_VAR_PATH=/var
+#ENV PHP_VERSION=7.4
+#RUN dnf -y module enable php:$PHP_VERSION && \
+#    dnf install -y --setopt=tsflags=nodocs php php-mysqlnd php-pgsql php-bcmath \
+#                php-gd php-intl php-json php-ldap php-mbstring php-pdo \
+#                php-pear php-zlib php-mysqli php-curl php-xml php-devel\
+#                php-process php-soap php-opcache php-fpm ca-certificates \
+#                php-gmp php-pecl-xdebug php-pecl-zip mod_ssl hostname && \
+#    wget https://getcomposer.org/installer -O /tmp/composer-installer.php && \
+#    php /tmp/composer-installer.php --filename=composer --install-dir=/usr/local/bin
+#
+#ENV PHP_DEFAULT_INCLUDE_PATH=/usr/share/pear \
+#    PHP_SYSCONF_PATH=/etc \
+#    PHP_HTTPD_CONF_FILE=php.conf \
+#    HTTPD_MAIN_CONF_PATH=/etc/httpd/conf \
+#    HTTPD_MAIN_CONF_D_PATH=/etc/httpd/conf.d \
+#    HTTPD_MODULES_CONF_D_PATH=/etc/httpd/conf.modules.d \
+#    HTTPD_VAR_RUN=/var/run/httpd \
+#    HTTPD_DATA_PATH=/var/www \
+#    HTTPD_DATA_ORIG_PATH=/var/www \
+#    HTTPD_VAR_PATH=/var
 
 # .NET
 ENV DOTNET_RPM_VERSION=6.0
@@ -178,9 +178,9 @@ RUN curl --proto '=https' --tlsv1.2 -sSfo rustup https://sh.rustup.rs && \
     chgrp -R 0 /home/tooling && chmod -R g=u /home/tooling
 
 # camel-k
-ENV KAMEL_VERSION 1.11.0
-RUN curl -L https://github.com/apache/camel-k/releases/download/v${KAMEL_VERSION}/camel-k-client-${KAMEL_VERSION}-linux-64bit.tar.gz | tar -C /usr/local/bin -xz \
-    && chmod +x /usr/local/bin/kamel
+#ENV KAMEL_VERSION 1.11.0
+#RUN curl -L https://github.com/apache/camel-k/releases/download/v${KAMEL_VERSION}/camel-k-client-${KAMEL_VERSION}-linux-64bit.tar.gz | tar -C /usr/local/bin -xz \
+#    && chmod +x /usr/local/bin/kamel
 
 # Config directories
 RUN mkdir -p /home/tooling/.m2 && \
@@ -196,21 +196,21 @@ RUN mkdir -p /home/tooling/.m2 && \
 # Cloud
 
 # oc client
-ENV OC_VERSION=4.6
-RUN curl -L https://mirror.openshift.com/pub/openshift-v4/clients/oc/${OC_VERSION}/linux/oc.tar.gz | tar -C /usr/local/bin -xz \
-    && chmod +x /usr/local/bin/oc
+#ENV OC_VERSION=4.6
+#RUN curl -L https://mirror.openshift.com/pub/openshift-v4/clients/oc/${OC_VERSION}/linux/oc.tar.gz | tar -C /usr/local/bin -xz \
+#    && chmod +x /usr/local/bin/oc
 
 # OS Pipelines CLI (tkn)
-ENV TKN_VERSION=1.13.0
-RUN curl -L https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/${TKN_VERSION}/tkn-linux-amd64.tar.gz | tar -C /usr/local/bin -xz \
-    && chmod +x /usr/local/bin/tkn /usr/local/bin/opc /usr/local/bin/tkn-pac
+#ENV TKN_VERSION=1.13.0
+#RUN curl -L https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/${TKN_VERSION}/tkn-linux-amd64.tar.gz | tar -C /usr/local/bin -xz \
+#    && chmod +x /usr/local/bin/tkn /usr/local/bin/opc /usr/local/bin/tkn-pac
  
 ## podman buildah skopeo
-RUN dnf -y module enable container-tools:rhel8 && \
-    dnf -y update && \
-    dnf -y reinstall shadow-utils && \
+#RUN dnf -y module enable container-tools:rhel8 && \
+#    dnf -y update && \
+#    dnf -y reinstall shadow-utils && \
     dnf -y install podman buildah skopeo fuse-overlayfs
-RUN echo 'alias docker=podman' >> ${PROFILE_EXT}
+#RUN echo 'alias docker=podman' >> ${PROFILE_EXT}
 
 # Set up environment variables to note that this is
 # not starting with usernamespace and default to
@@ -348,93 +348,93 @@ rm -rf "${TEMP_DIR}"
 EOF
 
 ## tektoncd-cli
-RUN <<EOF
-set -euf -o pipefail
-TEMP_DIR="$(mktemp -d)"
-cd "${TEMP_DIR}"
-TKN_VERSION="0.20.0"
-TKN_ARCH="Linux_x86_64"
-TKN_TGZ="tkn_${TKN_VERSION}_${TKN_ARCH}.tar.gz"
-TKN_TGZ_URL="https://github.com/tektoncd/cli/releases/download/v${TKN_VERSION}/${TKN_TGZ}"
-TKN_CHEKSUMS_URL="https://github.com/tektoncd/cli/releases/download/v${TKN_VERSION}/checksums.txt"
-curl -sSLO "${TKN_TGZ_URL}"
-curl -sSLO "${TKN_CHEKSUMS_URL}"
-sha256sum --ignore-missing -c "checksums.txt" 2>&1 | grep OK
-tar -zxvf "${TKN_TGZ}"
-mv tkn /usr/local/bin/
-cd -
-rm -rf "${TEMP_DIR}"
-EOF
+#RUN <<EOF
+#set -euf -o pipefail
+#TEMP_DIR="$(mktemp -d)"
+#cd "${TEMP_DIR}"
+#TKN_VERSION="0.20.0"
+#TKN_ARCH="Linux_x86_64"
+#TKN_TGZ="tkn_${TKN_VERSION}_${TKN_ARCH}.tar.gz"
+#TKN_TGZ_URL="https://github.com/tektoncd/cli/releases/download/v${TKN_VERSION}/${TKN_TGZ}"
+#TKN_CHEKSUMS_URL="https://github.com/tektoncd/cli/releases/download/v${TKN_VERSION}/checksums.txt"
+#curl -sSLO "${TKN_TGZ_URL}"
+#curl -sSLO "${TKN_CHEKSUMS_URL}"
+#sha256sum --ignore-missing -c "checksums.txt" 2>&1 | grep OK
+#tar -zxvf "${TKN_TGZ}"
+#mv tkn /usr/local/bin/
+#cd -
+#rm -rf "${TEMP_DIR}"
+#EOF
 
 ## knative-cli
-RUN <<EOF
-set -euf -o pipefail
-TEMP_DIR="$(mktemp -d)"
-cd "${TEMP_DIR}"
-KN_VERSION="0.26.0"
-KN_ARCH="linux-amd64"
-KN_BIN="kn-${KN_ARCH}"
-KN_BIN_URL="https://github.com/knative/client/releases/download/v${KN_VERSION}/${KN_BIN}"
-KN_CHEKSUMS_URL="https://github.com/knative/client/releases/download/v${KN_VERSION}/checksums.txt"
-curl -sSLO "${KN_BIN_URL}"
-curl -sSLO "${KN_CHEKSUMS_URL}"
-sha256sum --ignore-missing -c "checksums.txt" 2>&1 | grep OK
-mv "${KN_BIN}" kn
-chmod +x kn
-mv kn /usr/local/bin
-cd -
-rm -rf "${TEMP_DIR}"
-EOF
+#RUN <<EOF
+#set -euf -o pipefail
+#TEMP_DIR="$(mktemp -d)"
+#cd "${TEMP_DIR}"
+#KN_VERSION="0.26.0"
+#KN_ARCH="linux-amd64"
+#KN_BIN="kn-${KN_ARCH}"
+#KN_BIN_URL="https://github.com/knative/client/releases/download/v${KN_VERSION}/${KN_BIN}"
+#KN_CHEKSUMS_URL="https://github.com/knative/client/releases/download/v${KN_VERSION}/checksums.txt"
+#curl -sSLO "${KN_BIN_URL}"
+#curl -sSLO "${KN_CHEKSUMS_URL}"
+#sha256sum --ignore-missing -c "checksums.txt" 2>&1 | grep OK
+#mv "${KN_BIN}" kn
+#chmod +x kn
+#mv kn /usr/local/bin
+#cd -
+#rm -rf "${TEMP_DIR}"
+#EOF
 
 ## terraform-cli
-RUN <<EOF
-set -euf -o pipefail
-TEMP_DIR="$(mktemp -d)"
-cd "${TEMP_DIR}"
-TF_VERSION="1.0.7"
-TF_ARCH="linux_amd64"
-TF_ZIP="terraform_${TF_VERSION}_${TF_ARCH}.zip"
-TF_ZIP_URL="https://releases.hashicorp.com/terraform/${TF_VERSION}/${TF_ZIP}"
-TF_CHEKSUMS_URL="https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_SHA256SUMS"
-curl -sSLO "${TF_ZIP_URL}"
-curl -sSLO "${TF_CHEKSUMS_URL}"
-sha256sum --ignore-missing -c "terraform_${TF_VERSION}_SHA256SUMS" 2>&1 | grep OK
-unzip ${TF_ZIP}
-chmod +x terraform
-mv terraform /usr/local/bin
-cd -
-rm -rf "${TEMP_DIR}"
-EOF
+#RUN <<EOF
+#set -euf -o pipefail
+#TEMP_DIR="$(mktemp -d)"
+#cd "${TEMP_DIR}"
+#TF_VERSION="1.0.7"
+#TF_ARCH="linux_amd64"
+#TF_ZIP="terraform_${TF_VERSION}_${TF_ARCH}.zip"
+#TF_ZIP_URL="https://releases.hashicorp.com/terraform/${TF_VERSION}/${TF_ZIP}"
+#TF_CHEKSUMS_URL="https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_SHA256SUMS"
+#curl -sSLO "${TF_ZIP_URL}"
+#curl -sSLO "${TF_CHEKSUMS_URL}"
+#sha256sum --ignore-missing -c "terraform_${TF_VERSION}_SHA256SUMS" 2>&1 | grep OK
+#unzip ${TF_ZIP}
+#chmod +x terraform
+#mv terraform /usr/local/bin
+#cd -
+#rm -rf "${TEMP_DIR}"
+#EOF
 
 ## skaffold
-RUN curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && \
-    install skaffold /usr/local/bin/
+#RUN curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && \
+#    install skaffold /usr/local/bin/
 
 # e2fsprogs setup
 # Since e2fsprogs-static package has removed RHEL 8 distribution, it is not possible to install from the repository
 # https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/considerations_in_adopting_rhel_8/index#removed-packages_changes-to-packages
-RUN <<EOF
-set -euf -o pipefail
-TEMP_DIR="$(mktemp -d)"
-cd "${TEMP_DIR}"
-E2FSPROGS_VERSION="1.46.5"
-E2FSPROGS_TGZ="e2fsprogs-${E2FSPROGS_VERSION}.tar.gz"
-E2FSPROGS_TGZ_URL="https://mirrors.edge.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v${E2FSPROGS_VERSION}/${E2FSPROGS_TGZ}"
-E2FSPROGS_CHEKSUMS_URL="https://mirrors.edge.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v${E2FSPROGS_VERSION}/sha256sums.asc"
-curl -sSLO "${E2FSPROGS_TGZ_URL}"
-curl -sSLO "${E2FSPROGS_CHEKSUMS_URL}"
-sha256sum --ignore-missing -c "sha256sums.asc" 2>&1 | grep OK
-tar -zxvf "${E2FSPROGS_TGZ}"
-cd "e2fsprogs-${E2FSPROGS_VERSION}"
-mkdir build
-cd build
-../configure --prefix=/usr --with-root-prefix="" --enable-elf-shlibs --disable-evms
-make
-make install
-make install-libs
-cd -
-rm -rf "${TEMP_DIR}"
-EOF
+#RUN <<EOF
+#set -euf -o pipefail
+#TEMP_DIR="$(mktemp -d)"
+#cd "${TEMP_DIR}"
+#E2FSPROGS_VERSION="1.46.5"
+#E2FSPROGS_TGZ="e2fsprogs-${E2FSPROGS_VERSION}.tar.gz"
+#E2FSPROGS_TGZ_URL="https://mirrors.edge.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v${E2FSPROGS_VERSION}/${E2FSPROGS_TGZ}"
+#E2FSPROGS_CHEKSUMS_URL="https://mirrors.edge.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v${E2FSPROGS_VERSION}/sha256sums.asc"
+#curl -sSLO "${E2FSPROGS_TGZ_URL}"
+#curl -sSLO "${E2FSPROGS_CHEKSUMS_URL}"
+#sha256sum --ignore-missing -c "sha256sums.asc" 2>&1 | grep OK
+#tar -zxvf "${E2FSPROGS_TGZ}"
+#cd "e2fsprogs-${E2FSPROGS_VERSION}"
+#mkdir build
+#cd build
+#../configure --prefix=/usr --with-root-prefix="" --enable-elf-shlibs --disable-evms
+#make
+#make install
+#make install-libs
+#cd -
+#rm -rf "${TEMP_DIR}"
+#EOF
 
 # Bash completions
 RUN dnf -y install bash-completion \
