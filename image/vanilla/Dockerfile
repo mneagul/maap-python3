@@ -124,11 +124,11 @@ RUN dnf -y install llvm-toolset gcc gcc-c++ clang clang-libs clang-tools-extra g
 
 # Go 1.18+    - installed to /usr/bin/go
 # gopls 0.10+ - installed to /home/tooling/go/bin/gopls and /home/tooling/go/pkg/mod/
-RUN dnf install -y go-toolset && \
-    GO111MODULE=on go install -v golang.org/x/tools/gopls@latest && \
-    chgrp -R 0 /home/tooling && chmod -R g=u /home/tooling
-ENV GOBIN="/home/tooling/go/bin/"
-ENV PATH="$GOBIN:$PATH"
+#RUN dnf install -y go-toolset && \
+#    GO111MODULE=on go install -v golang.org/x/tools/gopls@latest && \
+#    chgrp -R 0 /home/tooling && chmod -R g=u /home/tooling
+#ENV GOBIN="/home/tooling/go/bin/"
+#ENV PATH="$GOBIN:$PATH"
 
 # Python
 RUN dnf -y install python3.11 python3.11-devel python3.11-setuptools python3.11-pip nss_wrapper
@@ -164,18 +164,18 @@ RUN pip install pylint yq
 #    HTTPD_VAR_PATH=/var
 
 # .NET
-ENV DOTNET_RPM_VERSION=6.0
-RUN dnf install -y dotnet-hostfxr-${DOTNET_RPM_VERSION} dotnet-runtime-${DOTNET_RPM_VERSION} dotnet-sdk-${DOTNET_RPM_VERSION}
+#ENV DOTNET_RPM_VERSION=6.0
+#RUN dnf install -y dotnet-hostfxr-${DOTNET_RPM_VERSION} dotnet-runtime-${DOTNET_RPM_VERSION} dotnet-sdk-${DOTNET_RPM_VERSION}
 
 # rust
-ENV CARGO_HOME=/home/tooling/.cargo \
-    RUSTUP_HOME=/home/tooling/.rustup \
-    PATH=/home/tooling/.cargo/bin:${PATH}
-RUN curl --proto '=https' --tlsv1.2 -sSfo rustup https://sh.rustup.rs && \
-    chmod +x rustup && \
-    mv rustup /usr/bin/ && \
-    rustup -y --no-modify-path --profile minimal -c rust-src -c rust-analysis -c rls && \
-    chgrp -R 0 /home/tooling && chmod -R g=u /home/tooling
+#ENV CARGO_HOME=/home/tooling/.cargo \
+#    RUSTUP_HOME=/home/tooling/.rustup \
+#    PATH=/home/tooling/.cargo/bin:${PATH}
+#RUN curl --proto '=https' --tlsv1.2 -sSfo rustup https://sh.rustup.rs && \
+#    chmod +x rustup && \
+#    mv rustup /usr/bin/ && \
+#    rustup -y --no-modify-path --profile minimal -c rust-src -c rust-analysis -c rls && \
+#    chgrp -R 0 /home/tooling && chmod -R g=u /home/tooling
 
 # camel-k
 #ENV KAMEL_VERSION 1.11.0
@@ -224,14 +224,14 @@ RUN touch /etc/subgid /etc/subuid  && \
     echo user:10000:65536 > /etc/subgid
 
 # Adjust storage.conf to enable Fuse storage.
-RUN sed -i -e 's|^#mount_program|mount_program|g' -e '/additionalimage.*/a "/var/lib/shared",' /etc/containers/storage.conf
-RUN mkdir -p /var/lib/shared/overlay-images /var/lib/shared/overlay-layers; \
-    touch /var/lib/shared/overlay-images/images.lock; \
-    touch /var/lib/shared/overlay-layers/layers.lock
+#RUN sed -i -e 's|^#mount_program|mount_program|g' -e '/additionalimage.*/a "/var/lib/shared",' /etc/containers/storage.conf
+#RUN mkdir -p /var/lib/shared/overlay-images /var/lib/shared/overlay-layers; \
+#    touch /var/lib/shared/overlay-images/images.lock; \
+#    touch /var/lib/shared/overlay-layers/layers.lock
 
 # But use VFS since we were not able to make Fuse work yet...
-RUN mkdir -p "${HOME}"/.config/containers && \
-   (echo '[storage]';echo 'driver = "vfs"') > "${HOME}"/.config/containers/storage.conf
+#RUN mkdir -p "${HOME}"/.config/containers && \
+#   (echo '[storage]';echo 'driver = "vfs"') > "${HOME}"/.config/containers/storage.conf
 
 # Configure container engine
 COPY --chown=0:0 containers.conf /etc/containers/containers.conf
