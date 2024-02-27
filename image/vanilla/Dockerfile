@@ -209,7 +209,7 @@ RUN mkdir -p /home/tooling/.m2 && \
 #RUN dnf -y module enable container-tools:rhel8 && \
 #    dnf -y update && \
 #    dnf -y reinstall shadow-utils && \
-    dnf -y install podman buildah skopeo fuse-overlayfs
+#    dnf -y install podman buildah skopeo fuse-overlayfs
 #RUN echo 'alias docker=podman' >> ${PROFILE_EXT}
 
 # Set up environment variables to note that this is
