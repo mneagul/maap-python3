@@ -1,10 +1,7 @@
 FROM continuumio/miniconda3:23.10.0-1
 ENV LANG en_US.UTF-8
 ENV TZ US/Pacific
-ARG DEBIAN_FRONTEND=noninteractive
 
-ENV BASE_IMAGE_TYPE=vanilla
-ENV WORKSPACE_TYPE=vanilla
 
 RUN mkdir -p /projects
 WORKDIR /projects
@@ -87,16 +84,12 @@ RUN mkdir /maap-py \
     && pip install -e /maap-py/
 
 COPY ./entrypoint.sh /entrypoint.sh
-COPY ./jupyter_patch /opt/jupyter_patch
 
-ENV ENVIRONMENTS_FILE_PATH=/opt/environments.json
-COPY ./environments.json $ENVIRONMENTS_FILE_PATH
-
-RUN echo 'printf "\e[101mNOTE: This terminal uses the default environment which might not be the same as your notebook.\e[49m\n\n"' >> /etc/profile
 
 RUN conda list
 
 # Reset Shell
 SHELL ["/bin/sh", "-c"]
 
-ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+#ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+ENTRYPOINT [ "/entrypoint.sh" ]
