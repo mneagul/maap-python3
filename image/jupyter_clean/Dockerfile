@@ -91,7 +91,7 @@ RUN conda list
 
 # Reset Shell
 SHELL ["/bin/sh", "-c"]
-
+ENV HOME=/home/user
 #ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 ENTRYPOINT [ "/entrypoint.sh" ]
-#CMD ["tail", "-f", "/dev/null"]
+CMD ["tail", "-f", "/dev/null"]
