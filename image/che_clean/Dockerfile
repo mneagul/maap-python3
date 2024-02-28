@@ -12,4 +12,4 @@ RUN chmod +x /entrypoint.sh
 ENV HOME=/home/user
 #ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 ENTRYPOINT [ "/entrypoint.sh" ]
-#CMD ["tail", "-f", "/dev/null"]
+CMD ["tail", "-f", "/dev/null"]
