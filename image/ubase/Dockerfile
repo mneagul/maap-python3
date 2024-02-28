@@ -142,7 +142,7 @@ RUN conda env create -y -f "/tmp/environment.yml" \
     && find /opt/conda/ -follow -type f -name '*.js.map' -delete \
     && /opt/conda/bin/conda clean -afy
 
-SHELL ["conda", "run", "-n", "vanilla", "/bin/bash", "-c"]
+#SHELL ["conda", "run", "-n", "vanilla", "/bin/bash", "-c"]
 
 
 USER 10001
