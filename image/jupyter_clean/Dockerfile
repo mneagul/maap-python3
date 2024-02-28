@@ -84,6 +84,7 @@ RUN mkdir /maap-py \
     && pip install -e /maap-py/
 
 COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 
 RUN conda list
