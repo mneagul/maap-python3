@@ -115,7 +115,43 @@ RUN \
     # Bash-related files are backed up to /home/tooling/ incase they are deleted when persistUserHome is enabled.
     cp /home/user/.bashrc /home/tooling/.bashrc && \
     cp /home/user/.bash_profile /home/tooling/.bash_profile && \
-    chown 10001 /home/tooling/.bashrc /home/tooling/.bash_profile
+    chown 10001 /home/tooling/.bashrc /home/tooling/.bash_profile 
+
+# Python
+RUN dnf -y install python3.11 python3.11-devel python3.11-setuptools python3.11-pip nss_wrapper
+
+RUN cd /usr/bin \
+    && if [ ! -L python ]; then ln -s python3.11 python; fi \
+    && if [ ! -L pydoc ]; then ln -s pydoc3.11 pydoc; fi \
+    && if [ ! -L python-config ]; then ln -s python3.11-config python-config; fi \
+    && if [ ! -L pip ]; then ln -s pip-3.11 pip; fi
+
+RUN pip install pylint yq
+
+# Miniconda
+# Install base utilities
+RUN apt-get update \
+    && apt-get install -y build-essential \
+    && apt-get install -y wget \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install miniconda
+ENV CONDA_DIR /opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda
+
+# Put conda in path so we can use conda activate
+ENV PATH=$CONDA_DIR/bin:$PATH
+
+COPY environment.yml /tmp
+RUN conda env create -y -f "/tmp/environment.yml" \
+    && find /opt/conda/ -follow -type f -name '*.a' -delete \
+    && find /opt/conda/ -follow -type f -name '*.js.map' -delete \
+    && /opt/conda/bin/conda clean -afy
+
+SHELL ["conda", "run", "-n", "vanilla", "/bin/bash", "-c"]
+
 
 USER 10001
 ENV HOME=/home/user
