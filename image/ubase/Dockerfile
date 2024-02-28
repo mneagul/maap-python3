@@ -144,6 +144,8 @@ RUN conda env create -y -f "/tmp/environment.yml" \
 
 #SHELL ["conda", "run", "-n", "vanilla", "/bin/bash", "-c"]
 
+# Reset Shell
+SHELL ["/bin/sh", "-c"]
 
 USER 10001
 ENV HOME=/home/user
