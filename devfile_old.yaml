@@ -14,10 +14,10 @@ components:
     volume:
       size: 5G
 commands:
-  - id: run-application
+  - id: run
     exec:
       label: "Run application"
-      component: toolsdevfile.yaml
+      component: maap_clean
       workingDir: ${PROJECT_SOURCE}
       commandLine: "python python-maap.py"
       group:

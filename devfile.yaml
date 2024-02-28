@@ -9,7 +9,7 @@ commands:
   - id: run
     exec:
       label: "Run application"
-      component: toolsdevfile.yaml
+      component: maapclean
       workingDir: ${PROJECT_SOURCE}
       commandLine: "python python-maap.py"
       group:
