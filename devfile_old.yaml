@@ -10,7 +10,16 @@ components:
           path: /home/user/.venv
       memoryLimit: 2Gi
       mountSources: true
+
   - name: venv
     volume:
       size: 5G
-
+commands:
+  - id: run-application
+    exec:
+      label: "Run application"
+      component: toolsdevfile.yaml
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "python python-maap.py"
+      group:
+        kind: run
