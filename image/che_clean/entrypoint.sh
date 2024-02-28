@@ -12,5 +12,6 @@ fi
 #    echo "${USER_NAME:-user}:x:$(id -u):" >> /etc/group
 #  fi
 #fi
-
+ls -l /home
+echo "HOME: $HOME"
 exec "$@"
