@@ -2,7 +2,7 @@
 
 # Source conda env
 source /opt/conda/bin/activate vanilla
-export SHELL=/bin/bash
+#export SHELL=/bin/bash
 
 # Ensure $HOME exists when starting
 if [ ! -d "${HOME}" ]; then
