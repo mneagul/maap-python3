@@ -5,3 +5,11 @@ components:
   - name: maapclean
     container:
       image: quay.io/igabriel185/maap-clean:latest
+      volumeMounts:
+        - name: venv
+          path: /home/user/.venv
+      memoryLimit: 2Gi
+      mountSources: true
+  - name: venv
+    volume:
+      size: 5G

@@ -94,3 +94,4 @@ SHELL ["/bin/sh", "-c"]
 
 #ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 ENTRYPOINT [ "/entrypoint.sh" ]
+CMD ["tail", "-f", "/dev/null"]

@@ -10,7 +10,6 @@ components:
           path: /home/user/.venv
       memoryLimit: 2Gi
       mountSources: true
-
   - name: venv
     volume:
       size: 5G
