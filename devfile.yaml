@@ -2,7 +2,7 @@ schemaVersion: 2.2.2
 metadata:
   name: python-maap-starter
 components:
-  - name: maap_clean
+  - name: maapclean
     container:
       image: quay.io/igabriel185/maap-clean:latest
       volumeMounts:
