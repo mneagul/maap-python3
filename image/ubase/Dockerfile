@@ -118,15 +118,15 @@ RUN \
     chown 10001 /home/tooling/.bashrc /home/tooling/.bash_profile
 
 # Python
-RUN dnf -y install python3.11 python3.11-devel python3.11-setuptools python3.11-pip nss_wrapper
+#RUN dnf -y install python3.11 python3.11-devel python3.11-setuptools python3.11-pip nss_wrapper
+#
+#RUN cd /usr/bin \
+#    && if [ ! -L python ]; then ln -s python3.11 python; fi \
+#    && if [ ! -L pydoc ]; then ln -s pydoc3.11 pydoc; fi \
+#    && if [ ! -L python-config ]; then ln -s python3.11-config python-config; fi \
+#    && if [ ! -L pip ]; then ln -s pip-3.11 pip; fi
 
-RUN cd /usr/bin \
-    && if [ ! -L python ]; then ln -s python3.11 python; fi \
-    && if [ ! -L pydoc ]; then ln -s pydoc3.11 pydoc; fi \
-    && if [ ! -L python-config ]; then ln -s python3.11-config python-config; fi \
-    && if [ ! -L pip ]; then ln -s pip-3.11 pip; fi
-
-RUN pip install pylint yq
+#RUN pip install pylint yq
 
 ##USER root
 ##SHELL ["conda", "run", "-n", "vanilla", "/bin/bash", "-c"]
