@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Source conda env
-source /opt/conda/bin/activate vanilla
+#source /opt/conda/bin/activate vanilla
 #export SHELL=/bin/bash
 
 # Ensure $HOME exists when starting
