@@ -127,7 +127,8 @@ RUN cd /usr/bin \
     && if [ ! -L pip ]; then ln -s pip-3.11 pip; fi
 
 RUN pip install pylint yq
-
+# For conda installation
+RUN chown 10001 -R /opt
 ##USER root
 ##SHELL ["conda", "run", "-n", "vanilla", "/bin/bash", "-c"]
 ##RUN conda config --system --add channels conda-forge
@@ -148,7 +149,7 @@ USER 10001
 ENV HOME=/home/user
 ## Miniconda
 ENV CONDA_DIR /opt/conda
-RUN chown 10001 -R /opt
+
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda
  \
