@@ -117,49 +117,8 @@ RUN \
     cp /home/user/.bash_profile /home/tooling/.bash_profile && \
     chown 10001 /home/tooling/.bashrc /home/tooling/.bash_profile
 
-# Python
-RUN dnf -y install python3.11 python3.11-devel python3.11-setuptools python3.11-pip nss_wrapper
-#
-RUN cd /usr/bin \
-    && if [ ! -L python ]; then ln -s python3.11 python; fi \
-    && if [ ! -L pydoc ]; then ln -s pydoc3.11 pydoc; fi \
-    && if [ ! -L python-config ]; then ln -s python3.11-config python-config; fi \
-    && if [ ! -L pip ]; then ln -s pip-3.11 pip; fi
-
-#RUN pip install pylint yq
-
-##USER root
-##SHELL ["conda", "run", "-n", "vanilla", "/bin/bash", "-c"]
-##RUN conda config --system --add channels conda-forge
-##RUN conda config --system --remove channels defaults
-#
-#COPY environment.yml /tmp
-#RUN conda env create -y -f "/tmp/environment.yml" \
-#    && find /opt/conda/ -follow -type f -name '*.a' -delete \
-#    && find /opt/conda/ -follow -type f -name '*.js.map' -delete \
-#    && /opt/conda/bin/conda clean -afy
-
-
-
-## Reset Shell
-#SHELL ["/bin/sh", "-c"]
-
 USER 10001
 ENV HOME=/home/user
-## Miniconda
-#ENV CONDA_DIR /home/user/conda
-#
-#RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-#    /bin/bash ~/miniconda.sh -b -p $CONDA_DIR
-#
-#    # Move .conda from tooling to user home
-##RUN cp -r /home/tooling/.conda /home/user/.conda && chown 10001 -R /home/user/.conda
-#
-## Change ownership of /opt/conda to user
-##RUN chown 10001 -R /opt/conda
-#
-## Put conda in path so we can use conda activate
-#ENV PATH=$CONDA_DIR/bin:$PATH
 WORKDIR /projects
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD ["tail", "-f", "/dev/null"]
