@@ -150,7 +150,7 @@ ENV HOME=/home/user
 ENV CONDA_DIR /home/user/conda
 
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-    /bin/bash ~/miniconda.sh -b -p -u $CONDA_DIR
+    /bin/bash ~/miniconda.sh -b -p -u ${CONDA_DIR}
 
     # Move .conda from tooling to user home
 #RUN cp -r /home/tooling/.conda /home/user/.conda && chown 10001 -R /home/user/.conda
