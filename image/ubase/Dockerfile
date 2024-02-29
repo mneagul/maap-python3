@@ -132,13 +132,13 @@ RUN pip install pylint yq
 ENV CONDA_DIR /opt/conda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda
-
-# Put conda in path so we can use conda activate
-ENV PATH=$CONDA_DIR/bin:$PATH
-RUN chown 10001 -R /opt/conda
-
 # Move .conda from tooling to user home
 RUN cp -r /home/tooling/.conda /home/user/.conda && chown 10001 -R /home/user/.conda
+
+# Change ownership of /opt/conda to user
+RUN chown 10001 -R /opt/conda
+
+
 
 
 ##USER root
@@ -159,6 +159,8 @@ SHELL ["/bin/sh", "-c"]
 
 USER 10001
 ENV HOME=/home/user
+# Put conda in path so we can use conda activate
+ENV PATH=$CONDA_DIR/bin:$PATH
 WORKDIR /projects
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD ["tail", "-f", "/dev/null"]
