@@ -128,24 +128,24 @@ RUN cd /usr/bin \
 
 RUN pip install pylint yq
 
-# Miniconda
-ENV CONDA_DIR /opt/conda
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-    /bin/bash ~/miniconda.sh -b -p /opt/conda
-
-# Put conda in path so we can use conda activate
-ENV PATH=$CONDA_DIR/bin:$PATH
-
-#USER root
-#SHELL ["conda", "run", "-n", "vanilla", "/bin/bash", "-c"]
-RUN conda config --system --add channels conda-forge
-RUN conda config --system --remove channels defaults
-
-COPY environment.yml /tmp
-RUN conda env create -y -f "/tmp/environment.yml" \
-    && find /opt/conda/ -follow -type f -name '*.a' -delete \
-    && find /opt/conda/ -follow -type f -name '*.js.map' -delete \
-    && /opt/conda/bin/conda clean -afy
+## Miniconda
+#ENV CONDA_DIR /opt/conda
+#RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+#    /bin/bash ~/miniconda.sh -b -p /opt/conda
+#
+## Put conda in path so we can use conda activate
+#ENV PATH=$CONDA_DIR/bin:$PATH
+#
+##USER root
+##SHELL ["conda", "run", "-n", "vanilla", "/bin/bash", "-c"]
+##RUN conda config --system --add channels conda-forge
+##RUN conda config --system --remove channels defaults
+#
+#COPY environment.yml /tmp
+#RUN conda env create -y -f "/tmp/environment.yml" \
+#    && find /opt/conda/ -follow -type f -name '*.a' -delete \
+#    && find /opt/conda/ -follow -type f -name '*.js.map' -delete \
+#    && /opt/conda/bin/conda clean -afy
 
 
 
