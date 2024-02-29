@@ -138,8 +138,8 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 RUN chown 10001 -R /opt/conda
 
 # Move .conda from tooling to user home
-RUN cp /home/tooling/.conda /home/user/.conda && chown 10001 /home/user/.conda
-RUN chown 10001 /home/user/.conda
+RUN cp -r /home/tooling/.conda /home/user/.conda && chown 10001 -R /home/user/.conda
+
 
 ##USER root
 ##SHELL ["conda", "run", "-n", "vanilla", "/bin/bash", "-c"]
