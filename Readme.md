@@ -4,7 +4,7 @@ A simple program that prints system information to the console.
 
 Create configmap for the sample
 ```bash
-kubectl create configmap getting-started-samples --from-file=maap-sample.json -n eclipse-che
+kubectl create configmap getting-started-samples --from-file=maap_sample.json -n eclipse-che
 ```
 
 Label the configmap
