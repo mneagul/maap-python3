@@ -141,7 +141,9 @@ COPY environment.yml /tmp
 RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
     && find $CONDA_DIR/ -follow -type f -name '*.a' -delete \
     && find $CONDA_DIR/ -follow -type f -name '*.js.map' -delete \
-    && $CONDA_DIR/bin/conda clean -afy
+    && $CONDA_DIR/bin/conda clean -afy \
+# use conda env
+SHELL ["conda", "run", "-n", "pymaap", "/bin/bash", "-c"]
 WORKDIR /projects
 ENTRYPOINT ["/entrypoint.sh" ]
 CMD ["tail", "-f", "/dev/null"]
