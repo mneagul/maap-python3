@@ -1,4 +1,4 @@
-name: vanilla
+name: pymaap
 channels:
   - conda-forge
   - nodefaults
