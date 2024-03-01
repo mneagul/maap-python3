@@ -15,7 +15,7 @@ spec:
       spec:
          containers:
             - name: ubi8-test
-              image: quay.io/igabriel185/maap-ubi8-dev:latest
+              image: quay.io/igabriel185/maap-ubi8:latest
               imagePullPolicy: Always
 ---
 apiVersion: v1
