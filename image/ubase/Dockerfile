@@ -117,19 +117,14 @@ RUN \
     cp /home/user/.bash_profile /home/tooling/.bash_profile && \
     chown 10001 /home/tooling/.bashrc /home/tooling/.bash_profile
 
-# Install python
-RUN dnf install -y python3 python3-pip && \
-    dnf clean all
+# Python
+RUN dnf -y install python3.11 python3.11-devel python3.11-setuptools python3.11-pip nss_wrapper
 
-# Install conda
-RUN curl -sSLO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
-    bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda && \
-    rm Miniconda3-latest-Linux-x86_64.sh && \
-    /opt/conda/bin/conda clean -afy && \
-    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
-    echo ". /opt/conda/etc/profile.d/conda.sh" >> /etc/profile.d/conda.sh && \
-    echo "conda activate base" >> /etc/profile.d/conda.sh && \
-    chown -R 10001 /opt/conda
+RUN cd /usr/bin \
+    && if [ ! -L python ]; then ln -s python3.11 python; fi \
+    && if [ ! -L pydoc ]; then ln -s pydoc3.11 pydoc; fi \
+    && if [ ! -L python-config ]; then ln -s python3.11-config python-config; fi \
+    && if [ ! -L pip ]; then ln -s pip-3.11 pip; fi
 
 USER 10001
 ENV HOME=/home/user
