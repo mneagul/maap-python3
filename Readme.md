@@ -46,7 +46,7 @@ export WORKSPACE_TYPE=vanilla
 
 ## Minikube setup
 ```bash
-minikube start --driver=virtualbox --addons=ingress,dashboard --vm=true --memory=16240 --cpus=8 --disk-size=100GB
+minikube start --driver=virtualbox --addons=ingress,dashboard --vm=true --memory=16240 --cpus=8 --disk-size=50GB
 ```
 ```bash
 minikube addons enable metrics-server
