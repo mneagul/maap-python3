@@ -4,7 +4,7 @@ metadata:
 components:
   - name: maapclean
     container:
-      image: quay.io/igabriel185/maap-ubi8-dev:working_python
+      image: quay.io/igabriel185/maap-ubi8-dev:latest
 commands:
   - id: run
     exec:
