@@ -14,7 +14,7 @@ spec:
             bb: web
       spec:
          containers:
-            - name: ubi8_test
+            - name: ubi8-test
               image: docker.io/library/maap-ubi8-dev
               imagePullPolicy: Never
 ---
