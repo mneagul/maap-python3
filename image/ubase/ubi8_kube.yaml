@@ -15,8 +15,8 @@ spec:
       spec:
          containers:
             - name: ubi8-test
-              image: docker.io/library/maap-ubi8-dev
-              imagePullPolicy: Never
+              image: quay.io/igabriel185/maap-ubi8-dev:latest
+              imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
