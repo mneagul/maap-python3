@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: ubi8-demo
+   namespace: default
+spec:
+   replicas: 1
+   selector:
+      matchLabels:
+         bb: web
+   template:
+      metadata:
+         labels:
+            bb: web
+      spec:
+         containers:
+            - name: ubi8_test
+              image: docker.io/library/maap-ubi8-dev
+              imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+   name: ubi8-entrypoint
+   namespace: default
+spec:
+   type: NodePort
+   selector:
+      bb: web
+   ports:
+      - port: 3000
+        targetPort: 3000
+        nodePort: 30001
