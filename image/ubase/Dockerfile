@@ -133,17 +133,13 @@ ENV CONDA_DIR /home/user/conda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p $CONDA_DIR
 # Put conda in path so we can use conda activate
-ENV PATH=$CONDA_DIR/bin:$PATH
-
-
+#ENV PATH=$CONDA_DIR/bin:$PATH
 # Create env
 COPY environment.yml /tmp
-RUN conda env create -y -f "/tmp/environment.yml" \
+RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
     && find $CONDA_DIR/ -follow -type f -name '*.a' -delete \
     && find $CONDA_DIR/ -follow -type f -name '*.js.map' -delete \
-    && $CONDA_DIR/bin/conda clean -afy \
-#reste shell
-SHELL ["/bin/bash", "-c"]
+    && $CONDA_DIR/bin/conda clean -afy
 WORKDIR /projects
 ENTRYPOINT ["/entrypoint.sh" ]
 CMD ["tail", "-f", "/dev/null"]
