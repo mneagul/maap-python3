@@ -126,8 +126,6 @@ RUN cd /usr/bin \
     && if [ ! -L python-config ]; then ln -s python3.11-config python-config; fi \
     && if [ ! -L pip ]; then ln -s pip-3.11 pip; fi
 
-USER 10001
-ENV HOME=/home/user
 # Miniconda
 ENV CONDA_DIR /home/user/conda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
@@ -135,6 +133,12 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     ln -s $CONDA_DIR/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
     echo ". $CONDA_DIR/etc/profile.d/conda.sh" >> ~/.bashrc && \
 
+
+USER 10001
+ENV HOME=/home/user
+# Change ownership of conda to user
+RUN chown -R 10001 $CONDA_DIR &&  \
+    chmod -R g=u $CONDA_DIR
 # Put conda in path so we can use conda activate
 ENV PATH=$CONDA_DIR/bin:$PATH
 
