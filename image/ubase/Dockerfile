@@ -115,11 +115,21 @@ RUN \
     # Bash-related files are backed up to /home/tooling/ incase they are deleted when persistUserHome is enabled.
     cp /home/user/.bashrc /home/tooling/.bashrc && \
     cp /home/user/.bash_profile /home/tooling/.bash_profile && \
-    chown 10001 /home/tooling/.bashrc /home/tooling/.bash_profile \
+    chown 10001 /home/tooling/.bashrc /home/tooling/.bash_profile
 
 # Install python
 RUN dnf install -y python3 python3-pip && \
     dnf clean all
+
+# Install conda
+RUN curl -sSLO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda && \
+    rm Miniconda3-latest-Linux-x86_64.sh && \
+    /opt/conda/bin/conda clean -afy && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> /etc/profile.d/conda.sh && \
+    echo "conda activate base" >> /etc/profile.d/conda.sh && \
+    chown -R 10001 /opt/conda
 
 USER 10001
 ENV HOME=/home/user
