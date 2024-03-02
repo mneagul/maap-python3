@@ -100,3 +100,12 @@ kubectl apply -f ubi8_kube.yaml
 ```bash
 kubectl describe pod ubi8-demo
 ```
+# Plugins
+
+ms-python.python
+ms-python.debugpy
+ms-toolsai.jupyter
+redhat.vscode-yaml
+redhat.vscode-commons
+redhat.vscode-xml
+
