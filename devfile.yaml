@@ -5,6 +5,7 @@ attributes:
    .vscode/extensions.json: |
       {
          "recommendations": [
+            "redhat.java",
             "ms-python.python",
             "ms-toolsai.jupyter",
             "ms-azuretools.vscode-docker",
@@ -13,6 +14,7 @@ attributes:
          ]
       }
    .che/che-theia-plugins.yaml: |
+       - id: redhat/java
        - id: redhat/vscode-yaml
        - id: ms-python/python
        - id: ms-toolsai/jupyter
