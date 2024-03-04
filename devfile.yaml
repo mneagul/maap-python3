@@ -13,11 +13,6 @@ attributes:
             "ms-azuretools.vscode-docker"
          ]
       }
-   .che/che-theia-plugins.yaml: |
-       - id: redhat/java
-       - id: redhat/vscode-yaml
-       - id: ms-python/python
-       - id: ms-toolsai/jupyter
 components:
   - name: maapclean
     container:
