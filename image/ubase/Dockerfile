@@ -118,17 +118,17 @@ RUN \
     chown 10001 /home/tooling/.bashrc /home/tooling/.bash_profile
 
 # Python
-#RUN dnf -y install python3.11 python3.11-devel python3.11-setuptools python3.11-pip nss_wrapper
-#
-#RUN cd /usr/bin \
-#    && if [ ! -L python ]; then ln -s python3.11 python; fi \
-#    && if [ ! -L pydoc ]; then ln -s pydoc3.11 pydoc; fi \
-#    && if [ ! -L python-config ]; then ln -s python3.11-config python-config; fi \
-#    && if [ ! -L pip ]; then ln -s pip-3.11 pip; fi
+RUN dnf -y install python3.11 python3.11-devel python3.11-setuptools python3.11-pip nss_wrapper
+
+RUN cd /usr/bin \
+    && if [ ! -L python ]; then ln -s python3.11 python; fi \
+    && if [ ! -L pydoc ]; then ln -s pydoc3.11 pydoc; fi \
+    && if [ ! -L python-config ]; then ln -s python3.11-config python-config; fi \
+    && if [ ! -L pip ]; then ln -s pip-3.11 pip; fi
 
 ENV CONDA_DIR /home/user/conda
-ENV PATH "$CONDA_DIR/bin:$PATH"
-ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
+#ENV PATH "$CONDA_DIR/bin:$PATH"
+#ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
 
 USER 10001
 ENV HOME=/home/user
@@ -149,7 +149,8 @@ RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
 
 # use conda env
 #SHELL ["conda", "run", "-n", "pymaap", "/bin/bash", "-c"]
-RUN echo "source activate pymaap" > ~/.bashrc
+ENV PYTHONPATH "$CONDA_DIR/envs/pymaap/bin/python:$PYTHONPATH"
+#RUN echo "source activate pymaap" > ~/.bashrc
 #ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
 #RUN source activate pymaap
 
