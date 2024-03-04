@@ -157,10 +157,9 @@ RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
 
 # use conda env
 #SHELL ["conda", "run", "-n", "pymaap", "/bin/bash", "-c"]
-ENV PYTHONPATH "$CONDA_DIR/envs/pymaap/bin/python:$PYTHONPATH"
-#RUN echo "source activate pymaap" > ~/.bashrc
+RUN echo "source activate pymaap" > ~/.bashrc
 #ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
-#RUN source activate pymaap
+RUN source activate pymaap
 
 # Set default shell to bash
 #SHELL ["/bin/bash", "-c"]
