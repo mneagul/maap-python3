@@ -38,4 +38,4 @@ commands:
       workingDir: ${PROJECT_SOURCE}
       commandLine: "ls -laht /projects > /projects/ls.txt"
       group:
-        kind: test
+        kind: run
