@@ -13,4 +13,5 @@ if ! whoami &> /dev/null; then
   fi
 fi
 echo $PATH
+echo $@
 exec "$@"
