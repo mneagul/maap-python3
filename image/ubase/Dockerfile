@@ -131,8 +131,9 @@ ENV CONDA_DIR /home/user/conda
 #ENV PATH="{$PATH:+${PATH}:}$CONDA_DIR/envs/pymaap/bin"
 
 # Appending to PATH
-ENV PATH "$PATH:$CONDA_DIR/bin"
 ENV PATH "$PATH:$CONDA_DIR/envs/pymaap/bin"
+ENV PATH "$PATH:$CONDA_DIR/bin"
+
 
 # Prepending to PATH
 #ENV PATH "$CONDA_DIR/bin:$PATH"
