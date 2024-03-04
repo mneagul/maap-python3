@@ -127,6 +127,8 @@ RUN cd /usr/bin \
     && if [ ! -L pip ]; then ln -s pip-3.11 pip; fi
 
 ENV CONDA_DIR /home/user/conda
+ENV PATH="{$PATH:+${PATH}:}/$CONDA_DIR/bin"
+ENV PATH="{$PATH:+${PATH}:}/$CONDA_DIR/envs/pymaap/bin"
 #ENV PATH "$CONDA_DIR/bin:$PATH"
 #ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
 
