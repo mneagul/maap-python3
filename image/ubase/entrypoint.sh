@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /home/user/conda/bin/activate pymaap
+source source activate pymaap
 # Ensure $HOME exists when starting
 if [ ! -d "${HOME}" ]; then
   mkdir -p "${HOME}"
@@ -13,6 +13,7 @@ if ! whoami &> /dev/null; then
     echo "${USER_NAME:-user}:x:$(id -u):" >> /etc/group
   fi
 fi
+which python
 echo $PATH
 echo $@
 exec "$@"
