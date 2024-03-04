@@ -128,11 +128,11 @@ RUN \
 
 ENV CONDA_DIR /home/user/conda
 #ENV PATH="{$PATH:+${PATH}:}$CONDA_DIR/bin"
-#ENV PATH="{$PATH:+${PATH}:}$CONDA_DIR/envs/pymaap/bin"
+ENV PATH="{$PATH:+${PATH}:}$CONDA_DIR/envs/pymaap/bin"
 
 # Appending to PATH
 ENV PATH "$PATH:$CONDA_DIR/bin"
-ENV PATH "$PATH:$CONDA_DIR/envs/pymaap/bin"
+#ENV PATH "$PATH:$CONDA_DIR/envs/pymaap/bin"
 
 # Prepending to PATH
 #ENV PATH "$CONDA_DIR/bin:$PATH"
@@ -161,7 +161,7 @@ RUN echo "source activate pymaap" > ~/.bashrc
 #ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
 #RUN source activate pymaap
 #Set defautl env
-ENV CONDA_DEFAULT_ENV pymaap
+#ENV CONDA_DEFAULT_ENV pymaap
 
 # Set default shell to bash
 #SHELL ["/bin/bash", "-c"]
