@@ -12,5 +12,5 @@ if ! whoami &> /dev/null; then
     echo "${USER_NAME:-user}:x:$(id -u):" >> /etc/group
   fi
 fi
-
+echo $PATH
 exec "$@"
