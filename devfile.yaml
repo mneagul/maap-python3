@@ -21,7 +21,7 @@ attributes:
 components:
   - name: maapclean
     container:
-      image: quay.io/igabriel185/maap-ubi8-dev:working_python_noconda_env
+      image: quay.io/igabriel185/maap-ubi8-dev:latest
 commands:
   - id: run
     exec:
