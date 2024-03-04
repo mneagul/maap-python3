@@ -31,3 +31,11 @@ commands:
       commandLine: "python python-maap.py"
       group:
         kind: run
+  - id: test
+    exec:
+      label: "Test cmd_dev"
+      component: maapclean
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "ls -laht /projects > /projects/ls.txt"
+      group:
+        kind: test

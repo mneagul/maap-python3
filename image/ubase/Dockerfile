@@ -126,6 +126,10 @@ RUN cd /usr/bin \
     && if [ ! -L python-config ]; then ln -s python3.11-config python-config; fi \
     && if [ ! -L pip ]; then ln -s pip-3.11 pip; fi
 
+
+ENV PATH "$CONDA_DIR/bin:$PATH"
+ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
+
 USER 10001
 ENV HOME=/home/user
 
@@ -136,7 +140,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 
 # Put conda in path so we can use conda activate
 #ENV PATH=$CONDA_DIR/bin:$PATH
-ENV PATH "$CONDA_DIR/bin:$PATH"
+#ENV PATH "$CONDA_DIR/bin:$PATH"
 # Create env
 COPY environment.yml /tmp
 RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
@@ -147,7 +151,7 @@ RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
 # use conda env
 #SHELL ["conda", "run", "-n", "pymaap", "/bin/bash", "-c"]
 RUN echo "source activate pymaap" > ~/.bashrc
-ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
+#ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
 #RUN source activate pymaap
 
 # Set default shell to bash
