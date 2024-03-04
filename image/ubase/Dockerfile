@@ -128,6 +128,7 @@ RUN cd /usr/bin \
 
 USER 10001
 ENV HOME=/home/user
+
 # Miniconda
 ENV CONDA_DIR /home/user/conda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
@@ -147,7 +148,7 @@ RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
 # use conda env
 #SHELL ["conda", "run", "-n", "pymaap", "/bin/bash", "-c"]
 RUN echo "source activate pymaap" > ~/.bashrc
-#ENV PATH $CONDA_DIR/envs/pymaap/bin:$PATH
+ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
 #RUN source activate pymaap
 
 WORKDIR /projects
