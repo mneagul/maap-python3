@@ -151,6 +151,9 @@ RUN echo "source activate pymaap" > ~/.bashrc
 ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
 #RUN source activate pymaap
 
+# Set default shell to bash
+SHELL ["/bin/bash", "-c"]
+
 WORKDIR /projects
 ENTRYPOINT ["/entrypoint.sh" ]
 CMD ["tail", "-f", "/dev/null"]
