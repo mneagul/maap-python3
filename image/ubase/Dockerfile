@@ -143,16 +143,15 @@ RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
     && find $CONDA_DIR/ -follow -type f -name '*.a' -delete \
     && find $CONDA_DIR/ -follow -type f -name '*.js.map' -delete \
     && $CONDA_DIR/bin/conda clean -afy
-#    && $CONDA_DIR/bin/conda init bash \
-#    && echo "conda activate pymaap" >> /home/user/.bashrc
+
 # use conda env
-#SHELL ["conda", "run", "-n", "pymaap", "/bin/bash", "-c"]
+SHELL ["conda", "run", "-n", "pymaap", "/bin/bash", "-c"]
 #RUN echo "source activate pymaap" > ~/.bashrc
 #ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
 #RUN source activate pymaap
 
 # Set default shell to bash
-SHELL ["/bin/bash", "-c"]
+#SHELL ["/bin/bash", "-c"]
 
 WORKDIR /projects
 ENTRYPOINT ["/entrypoint.sh" ]
