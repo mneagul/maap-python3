@@ -147,7 +147,7 @@ RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
 # use conda env
 #SHELL ["conda", "run", "-n", "pymaap", "/bin/bash", "-c"]
 RUN echo "source activate pymaap" > ~/.bashrc
-ENV PATH $CONDA_DIR/envs/pymaap/bin:$PATH
+ENV PATH="$CONDA_DIR/envs/pymaap/bin:$PATH"
 #RUN source activate pymaap
 
 WORKDIR /projects
