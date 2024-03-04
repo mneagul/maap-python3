@@ -132,7 +132,7 @@ ENV HOME=/home/user
 # Miniconda
 ENV CONDA_DIR /home/user/conda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-    /bin/bash ~/miniconda.sh -b -p $CONDA_DIR && rm ~/miniconda.sh
+    bash ~/miniconda.sh -b -p $CONDA_DIR && rm ~/miniconda.sh
 
 # Put conda in path so we can use conda activate
 #ENV PATH=$CONDA_DIR/bin:$PATH
@@ -147,8 +147,8 @@ RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
 #    && echo "conda activate pymaap" >> /home/user/.bashrc
 # use conda env
 #SHELL ["conda", "run", "-n", "pymaap", "/bin/bash", "-c"]
-RUN echo "source activate pymaap" > ~/.bashrc
-ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
+#RUN echo "source activate pymaap" > ~/.bashrc
+#ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
 #RUN source activate pymaap
 
 # Set default shell to bash
