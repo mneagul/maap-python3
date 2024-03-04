@@ -36,6 +36,6 @@ commands:
       label: "Test cmd_dev"
       component: maapclean
       workingDir: ${PROJECT_SOURCE}
-      commandLine: "ls -laht /projects > /projects/ls.txt"
+      commandLine: "ls -laht /projects > /home/user/ls.txt"
       group:
         kind: run
