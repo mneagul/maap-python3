@@ -126,7 +126,7 @@ RUN \
 #    && if [ ! -L python-config ]; then ln -s python3.11-config python-config; fi \
 #    && if [ ! -L pip ]; then ln -s pip-3.11 pip; fi
 
-
+ENV CONDA_DIR /home/user/conda
 ENV PATH "$CONDA_DIR/bin:$PATH"
 ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
 
@@ -134,7 +134,6 @@ USER 10001
 ENV HOME=/home/user
 
 # Miniconda
-ENV CONDA_DIR /home/user/conda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     bash ~/miniconda.sh -b -p $CONDA_DIR && rm ~/miniconda.sh
 
