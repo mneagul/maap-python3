@@ -2,20 +2,15 @@ schemaVersion: 2.2.2
 metadata:
   name: python-maap-starter
 components:
-  - attributes:
-      ports:
-        - exposedPort: 8080
+  - name: maapclean
     container:
+      image: quay.io/igabriel185/maap-ubi8-dev:latest
       endpoints:
-        - attributes:
+        - name: maapclean
+          attributes:
+            ports: 3101
             cookiesAuthEnabled: true
             discoverable: true
             type: main
             urlRewriteSupported: true
-          exposure: public
-          name: python-maap-starter
-          protocol: http
-          targetPort: 3101
-      image: quay.io/igabriel185/maap-ubi8-dev:latest
-      sourceMapping: /projects
-
+          expose: true
