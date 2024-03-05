@@ -16,9 +16,3 @@ components:
           exposure: public
           secure: false
           protocol: http
-commands:
-    - id: run
-        exec:
-          component: maapclean
-          commandLine: "jupyter lab --ip=0.0.0.0 --port=3100 --ServerApp.token='' --no-browser"
-          workingDir: ${PROJECT_SOURCE}
