@@ -159,7 +159,7 @@ ENV PATH "$PATH:$CONDA_DIR/bin"
 #ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
 
 # Ajust permissions
-RUN chgrp -Rf root /home/user && chmod -Rf g+w /home/user
+#RUN chgrp -Rf root /home/user && chmod -Rf g+w /home/user
 
 USER 10001
 ENV HOME=/home/user

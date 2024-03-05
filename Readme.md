@@ -17,13 +17,34 @@ Delete the configmap
 kubectl delete configmap getting-started-samples -n eclipse-che
 ```
 
+Add different splash screen
+```bash
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: che-dashboard-customization
+  namespace: eclipse-che
+  annotations:
+    che.eclipse.org/mount-as: subpath
+    che.eclipse.org/mount-path: /public/dashboard/assets/branding
+  labels:
+    app.kubernetes.io/component: che-dashboard-secret
+    app.kubernetes.io/part-of: che.eclipse.org
+data:
+  loader.svg:<splash_screen>
+  type: Opaque
+EOF
+``` 
+
+
 # Build and run the container
 ```bash
-vanilla build -t maap-starter .
+docker build -t maap-starter .
 ```
 
 ```bash
-vanilla run -it --rm maap-starter bash
+docker run -it --rm maap-starter bash
 ```
 # ToDo
 - [ ] Add more system information
