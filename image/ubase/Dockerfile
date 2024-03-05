@@ -194,5 +194,8 @@ RUN jupyter lab build && \
 #SHELL ["/bin/bash", "-c"]
 
 WORKDIR /projects
+# Ajust permissions
+RUN chgrp -Rf root /home/user && chmod -Rf g+w /home/user
+
 ENTRYPOINT ["/entrypoint.sh" ]
 CMD ["tail", "-f", "/dev/null"]
