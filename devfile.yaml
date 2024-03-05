@@ -8,9 +8,11 @@ components:
       endpoints:
         - name: maapclean
           attributes:
-            targetPort: 3101
-            cookiesAuthEnabled: true
-            discoverable: true
             type: main
+            cookiesAuthEnabled: true
             urlRewriteSupported: true
-          expose: true
+            discoverable: false
+          targetPort: 8887
+          exposure: public
+          secure: false
+          protocol: https
