@@ -8,7 +8,7 @@ components:
       endpoints:
         - name: maapclean
           attributes:
-            ports: 3101
+            targetPort: 3101
             cookiesAuthEnabled: true
             discoverable: true
             type: main
