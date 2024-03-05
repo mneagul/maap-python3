@@ -158,6 +158,9 @@ ENV PATH "$PATH:$CONDA_DIR/bin"
 #ENV PATH "$CONDA_DIR/bin:$PATH"
 #ENV PATH "$CONDA_DIR/envs/pymaap/bin:$PATH"
 
+# Ajust permissions
+RUN chgrp -Rf root /home/user && chmod -Rf g+w /home/user
+
 USER 10001
 ENV HOME=/home/user
 
@@ -213,8 +216,5 @@ RUN jupyter lab build && \
 #SHELL ["/bin/bash", "-c"]
 
 WORKDIR /projects
-# Ajust permissions
-#RUN chgrp -Rf root /home/user && chmod -Rf g+w /home/user
-
 ENTRYPOINT ["/entrypoint.sh" ]
 CMD ["tail", "-f", "/dev/null"]

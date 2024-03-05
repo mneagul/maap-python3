@@ -15,7 +15,7 @@ fi
 whoami
 VERSION=$(jupyter lab --version)
 if [[ $VERSION > '3' ]] && [[ $VERSION < '4' ]]; then
-    jupyter lab --ip=0.0.0.0 --port=3100 --ContentsManager.allow_hidden=True --ServerApp.token='' --no-browser --debug --ServerApp.disable_check_xsrf=True --ResourceUseDisplay.mem_warning_threshold=0.2
+    jupyter lab --ip=0.0.0.0 --port=3100 --allow-root --ContentsManager.allow_hidden=True --ServerApp.token='' --no-browser --debug --ServerApp.disable_check_xsrf=True --ResourceUseDisplay.mem_warning_threshold=0.2
 else
     echo "Error! Jupyterlab version not supported."
     which python
