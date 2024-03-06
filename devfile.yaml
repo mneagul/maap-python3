@@ -22,6 +22,13 @@ components:
   - name: maapclean
     container:
       image: quay.io/igabriel185/maap-ubi8-dev:latest
+      env:
+        - name: TEST_ENV
+          value: 0.0.1
+      endpoints:
+        - name: jupyterlab
+          targetPort: 3100
+          exposure: public
 commands:
   - id: run
     exec:
