@@ -5,7 +5,6 @@ components:
   - name: maapclean
     container:
       image: quay.io/igabriel185/maap-ubi8-dev:latest
-      type: cheEditor
       env:
         - name: TEST_ENV
           value: 0.0.1
@@ -13,6 +12,9 @@ components:
         - name: jupyterlab
           targetPort: 3100
           exposure: public
+      command:['jupyter']
+      args: ['lab', '--ip=0.0.0.0', '--port=3100', '--allow-root', '--ContentsManager.allow_hidden=True', '--ServerApp.token=''', '--no-browser', '--debug', '--ServerApp.disable_check_xsrf=True',  '--ResourceUseDisplay.mem_warning_threshold=0.2']
+
 commands:
   - id: run
     exec:
