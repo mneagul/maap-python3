@@ -34,7 +34,7 @@ commands:
     exec:
       label: Run ide
       component: maapclean
-      workingDir: '${PROJECT_SOURCE}'
+      workingDir: '${PROJECT_ROOT}'
       commandLine: jupyter lab --ip=0.0.0.0 --port=3100 --allow-root --no-browser
       group:
         kind: run
