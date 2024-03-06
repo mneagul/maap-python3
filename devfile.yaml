@@ -1,23 +1,6 @@
 schemaVersion: 2.2.2
 metadata:
   name: python-maap-starter
-attributes:
-   .vscode/extensions.json: |
-      {
-         "recommendations": [
-            "redhat.java",
-            "ms-python.python",
-            "ms-toolsai.jupyter",
-            "ms-azuretools.vscode-docker",
-            "redhat.vscode-yaml",
-            "ms-azuretools.vscode-docker"
-         ]
-      }
-   .che/che-theia-plugins.yaml: |
-       - id: redhat/java
-       - id: redhat/vscode-yaml
-       - id: ms-python/python
-       - id: ms-toolsai/jupyter
 components:
   - name: maapclean
     container:
