@@ -20,7 +20,6 @@ attributes:
        - id: ms-toolsai/jupyter
 components:
   - name: maapclean
-    type: cheEditor
     container:
       image: quay.io/igabriel185/maap-ubi8-dev:latest
       env:
