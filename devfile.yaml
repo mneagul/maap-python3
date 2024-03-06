@@ -4,7 +4,7 @@ metadata:
 components:
   - name: maapclean
     container:
-      image: quay.io/igabriel185/maap-ubi8-dev:latest
+      image: 'quay.io/igabriel185/maap-ubi8-dev:latest'
       env:
         - name: TEST_ENV
           value: 0.0.1
@@ -12,15 +12,19 @@ components:
         - name: jupyterlab
           targetPort: 3100
           exposure: public
-      command:['jupyter']
-      args: ['lab', '--ip=0.0.0.0', '--port=3100', '--allow-root']
-
+      command:
+        - jupyter
+      args:
+        - lab
+        - '--ip=0.0.0.0'
+        - '--port=3100'
+        - '--allow-root'
 commands:
   - id: run
     exec:
       label: Run test
       component: maapclean
       workingDir: '${PROJECT_ROOT}'
-      commandLine: ls -laht > ${PROJECT_ROOT}/test.txt
+      commandLine: 'ls -laht > ${PROJECT_ROOT}/test.txt'
       group:
         kind: run
