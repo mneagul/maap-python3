@@ -5,6 +5,7 @@ components:
   - name: maapclean
     container:
       image: quay.io/igabriel185/maap-ubi8-dev:latest
+      type: cheEditor
       env:
         - name: TEST_ENV
           value: 0.0.1
@@ -15,9 +16,9 @@ components:
 commands:
   - id: run
     exec:
-      label: Run ide
+      label: Run test
       component: maapclean
       workingDir: '${PROJECT_ROOT}'
-      commandLine: jupyter lab --ip=0.0.0.0 --port=3100 --allow-root --no-browser
+      commandLine: ls -laht > ${PROJECT_ROOT}/test.txt
       group:
         kind: run

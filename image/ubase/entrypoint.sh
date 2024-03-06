@@ -12,6 +12,9 @@ if ! whoami &> /dev/null; then
     echo "${USER_NAME:-user}:x:$(id -u):" >> /etc/group
   fi
 fi
+
+jupyter lab --ip=0.0.0.0 --port=3100 --allow-root --ContentsManager.allow_hidden=True --ServerApp.token='' --no-browser --debug --ServerApp.disable_check_xsrf=True  --ResourceUseDisplay.mem_warning_threshold=0.2
+
 whoami
 which python
 echo $PATH
