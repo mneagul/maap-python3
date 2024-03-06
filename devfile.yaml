@@ -13,7 +13,7 @@ components:
           targetPort: 3100
           exposure: public
       command:['jupyter']
-      args: ['lab', '--ip=0.0.0.0', '--port=3100', '--allow-root', '--ContentsManager.allow_hidden=True', '--ServerApp.token=''', '--no-browser', '--debug', '--ServerApp.disable_check_xsrf=True',  '--ResourceUseDisplay.mem_warning_threshold=0.2']
+      args: ['lab', '--ip=0.0.0.0', '--port=3100', '--allow-root', '--ContentsManager.allow_hidden=True', '--no-browser', '--debug', '--ServerApp.disable_check_xsrf=True',  '--ResourceUseDisplay.mem_warning_threshold=0.2']
 
 commands:
   - id: run
