@@ -17,14 +17,14 @@ components:
       args:
         - lab
         - '--ip=0.0.0.0'
-        - '--port=3100'
+        - '--port=3101'
         - '--allow-root'
 commands:
   - id: run
     exec:
       label: Run test
       component: maapclean
-      workingDir: '${PROJECT_ROOT}'
-      commandLine: 'ls -laht > ${PROJECT_ROOT}/test.txt'
+      workingDir: '${PROJECT_SOURCE}'
+      commandLine: 'ls -laht > ${PROJECT_SOURCE}/test.txt'
       group:
         kind: run
