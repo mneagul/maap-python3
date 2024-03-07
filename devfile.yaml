@@ -10,7 +10,7 @@ components:
           value: 0.0.1
       endpoints:
         - name: jupyterlab
-          targetPort: 3100
+          targetPort: 3101
           exposure: public
       command:
         - jupyter
