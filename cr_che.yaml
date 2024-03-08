@@ -1,14 +1,12 @@
+---
 apiVersion: org.eclipse.che/v2
 kind: CheCluster
 metadata:
   name: eclipse-che
   namespace: eclipse-che
 spec:
-    components:
-        devfileRegistry:
-            deployment:
-                containers:
-                    image: quay.io/igabriel185/che-dev-file-registry:latest
-
-
-
+  components:
+    devfileRegistry:
+      deployment:
+        containers:
+        - image: quay.io/igabriel185/che-dev-file-registry:latest
