@@ -21,7 +21,7 @@ attributes:
 components:
   - name: maapclean
     container:
-      image: quay.io/igabriel185/maap-ubi8-dev:latest
+      image: harbor.eocc.ieat.ro/quayio/igabriel185/maap-ubi8-dev:latest
 commands:
   - id: run
     exec:
